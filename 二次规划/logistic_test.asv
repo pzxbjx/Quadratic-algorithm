@@ -1,0 +1,7 @@
+load('australian.mat');
+[m,n] = size(australian_Tr);
+x = [ones(m,1),australian_Tr];
+y = australian_Tr_Lb;
+xtest = [ones(size(australian_Ts,1),1),australian_Ts];
+ytest = australian_Ts_Lb;
+accuracy = logistic(x,y,xtest,ytest,);

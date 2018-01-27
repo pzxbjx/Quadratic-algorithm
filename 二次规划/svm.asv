@@ -1,0 +1,14 @@
+function [w,b,test_error] = svm(x,y,xtest,ytest,c)
+[m,n] = size(x);
+G = zeros(n+1+m);
+G(1:n,1:n) = eye(n);
+h = [zeros(n+1,1);c*ones(m,1)];
+A0 = [australian_Tr,ones(m,1)];
+for i= 1:m
+    A0(i,:) = A0(i,:)*y(i);
+end
+A = [A0,eye(m);zeros(m,n+1),eye(m)];
+b = [ones(m,1);zeros(m,1)];
+[xmin,value] = quadprog(G,h,-A,-b,[],[]);
+pred = [australian_Ts,ones(138,1)] * xmin(1:n+1);
+test_error = sum(pred.*australian_Ts_Lb < 0) / size(australian_Ts,1);

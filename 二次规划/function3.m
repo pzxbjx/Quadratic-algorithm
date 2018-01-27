@@ -1,0 +1,13 @@
+t0 = cputime;
+G = [0 0 -1 1;0 0 1 -1;-1 1 0 0;1 -1 0 0];
+h = [1;-1;-1;0];
+A = [1 2 0 0;4 1 0 0;3 4 0 0;0 0 2 1;0 0 1 2; 0 0 1 1];
+b = [8;12;12;8;8;5];
+x0 = [0;0;0;0];
+f = @(x)x'*G*x + h'*x;
+[xmin,fval] = fmincon(f,x0,A,b,[],[],zeros(4,1),[]);
+time = cputime-t0;
+fprintf('最优解为:\n');
+fprintf(' %f',xmin');
+fprintf('\n函数值为: %f\n',fval);
+fprintf('运行时间为: %f\n',time);

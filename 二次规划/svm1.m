@@ -1,0 +1,10 @@
+load('australian.mat');
+[w,b,output] = svm_train(australian_Tr,australian_Tr_Lb,australian_para_C);
+accuracy_Tr = svm_predict(australian_Tr_Lb,australian_Tr,w,b);
+accuracy_Ts = svm_predict(australian_Ts_Lb,australian_Ts,w,b);
+fprintf('超平面参数w值为：\n');
+fprintf(' %f',w');
+fprintf('\n迭代次数： %d',output.iterations);
+fprintf('\n超平面参数b值为：%f\n',b);
+fprintf('训练集的准确度为：%f\n',accuracy_Tr);
+fprintf('测试集的准确度为：%f\n',accuracy_Ts);
