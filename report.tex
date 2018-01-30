@@ -211,13 +211,13 @@
 	       为了定义这样一个最优的超平面，我们介绍两个概念，函数距离（functional  margin）和几何距离（geometric margin）。
 	       
 	       数据样本相对于超平面的函数距离为：
-	       \[\gamma_i = y_i(wx_i+b) \eqno{(3.1)}\]
+	       \[\hat{\gamma_i} = y_i(wx_i+b) \eqno{(3.1)}\]
 	       
 	       几何距离，即样本点到超平面的欧式距离
-	       \[\hat{\gamma_i} = \frac{1}{\Vert w \Vert}y_i(wx_i+b)\eqno{(3.2)}\]
+	       \[\gamma_i = \frac{1}{\Vert w \Vert}y_i(wx_i+b)\eqno{(3.2)}\]
 	       
 	       显然我们得到下面的一个关系：
-	       \[\gamma_i =  \frac{1}{\Vert w \Vert}\hat{\gamma_i} \eqno{(3.3)}\]
+	       \[\hat{\gamma_i} =  \frac{1}{\Vert w \Vert}\gamma_i \eqno{(3.3)}\]
 	       
 	       非常直观的，如果距离分类超平面（hyperlane）最近的数据点的几何距离越大，分类也就越精确，该分类器的噪声容忍度就越大，也就是越robust。
 	       
@@ -228,7 +228,7 @@
        \subsection{SVM的标准形式}
           
           由（3.1）可知，当w，b乘以一个任意常数，函数距离也随之变化，但几何距离保持不变。我们可以通过一定的数值变化，使得最小函数距离为1，最优分类器的最优化问题就可以定义为：
-          \[\max \limits_{w,b} \hat{\gamma} \eqno{(3.4)} \]
+          \[\max \limits_{w,b} \gamma \eqno{(3.4)} \]
           \[\text{ s.t. } y_i(wx_i+b) \ge 1 \quad i=1,2,...m\]
           
           从（3.3）我们又知道最小几何距离实际等于w的模长的倒数，从而我们得到了与最优间隔分类器等价的凸二次规划问题
